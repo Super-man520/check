@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="total">
+      <input type="checkbox" id="total"><span>全选</span>
+    </div>
+    <div class="single">
+      <input type="checkbox"> <span>112</span><br>
+      <input type="checkbox"> <span>552</span><br>
+      <input type="checkbox"> <span>887</span><br>
+      <input type="checkbox"> <span>336</span><br>
+      <input type="checkbox"> <span>993</span>
+    </div>
+    <div class="price">
+      价钱总计: <span></span>
+    </div>
+  </div>
+  <script>
+    var total = document.querySelector('#total')
+    var inps = document.querySelectorAll('.single input')
+    // 全选
+    total.onclick = function () {
+      var $state = total.checked
+      for (i = 0; i < inps.length; i++) {
+        inps[i].checked = $state
+      }
+      setPrice()
+    }
+    for (i = 0; i < inps.length; i++) {
+      inps[i].onclick = function () {
+        var flag = true
+        for (i = 0; i < inps.length; i++) {
+          if (!inps[i].checked) {
+            flag = false
+          }
+        }
+        setPrice()
+        total.checked = flag
+      }
+    }
+
+    function setPrice() {
+      var totalPrice = 0
+      var isChecked = document.querySelectorAll('.single input:checked')
+      // console.log(isChecked);
+
+      for (var i = 0; i < isChecked.length; i++) {
+        var $price = +isChecked[i].nextElementSibling.innerText
+        totalPrice += $price
+      }
+      document.querySelector('.price span').innerHTML = totalPrice
+    }
+  </script>
+</body>
+
+</html>
