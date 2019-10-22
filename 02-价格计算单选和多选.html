@@ -35,6 +35,8 @@
       }
       setPrice()
     }
+
+    // 单选
     for (i = 0; i < inps.length; i++) {
       inps[i].onclick = function () {
         var flag = true
@@ -48,6 +50,7 @@
       }
     }
 
+    // 价格计算
     function setPrice() {
       var totalPrice = 0
       var isChecked = document.querySelectorAll('.single input:checked')
@@ -57,6 +60,7 @@
         var $price = +isChecked[i].nextElementSibling.innerText
         totalPrice += $price
       }
+      // 添加到页面
       document.querySelector('.price span').innerHTML = totalPrice
     }
   </script>
